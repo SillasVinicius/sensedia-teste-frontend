@@ -9,6 +9,6 @@ Realizar o clone do projeto utilizando o git, ou baixar o zip e extrai-lo.
 ### `yarn install`
 Executar o comando `yarn install` na pasta do projeto, utilizando o terminal. Este comando instala as dependências do projeto.
 
-## Terceiro Passo
+## Quarto Passo
 ### `yarn start`
 Executar o comando `yarn start` na pasta do projeto, utilizando o terminal. Este comando inicia a aplicação no endereço [http://localhost:3000](http://localhost:3000).
