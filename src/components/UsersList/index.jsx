@@ -168,30 +168,37 @@ export default function UsersList() {
   }
 
   function deleteUser(user) {
-    if (user) {
-      let users = JSON.parse(JSON.stringify(rows));
-      let newUser = JSON.parse(JSON.stringify(user));
-      newUser.blocked = true;
-      delete newUser.daysOfWeek;
-      delete newUser.posts;
-      delete newUser.albums;
+    var result = window.confirm(
+      `Deseja realmente excluir o usuário ${user.username}?`
+    );
+    if (result) {
+      if (user) {
+        let users = JSON.parse(JSON.stringify(rows));
+        let newUser = JSON.parse(JSON.stringify(user));
+        newUser.blocked = true;
+        delete newUser.daysOfWeek;
+        delete newUser.posts;
+        delete newUser.albums;
 
-      const requestOptions = {
-        method: "PUT",
-        headers: { "Content-Type": "application/json; charset=UTF-8" },
-        body: JSON.stringify(newUser),
-      };
+        const requestOptions = {
+          method: "PUT",
+          headers: { "Content-Type": "application/json; charset=UTF-8" },
+          body: JSON.stringify(newUser),
+        };
 
-      fetch(
-        `https://626bd539e5274e6664d24112.mockapi.io/front-test/v1/user/${user.id}`,
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+        fetch(
+          `https://626bd539e5274e6664d24112.mockapi.io/front-test/v1/user/${user.id}`,
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
 
-      const filteredUsers = users.filter((u) => filterUserByID(u, newUser.id));
-      setRows(filteredUsers);
+        const filteredUsers = users.filter((u) =>
+          filterUserByID(u, newUser.id)
+        );
+        setRows(filteredUsers);
+      }
     }
   }
 
